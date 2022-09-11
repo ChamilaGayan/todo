@@ -12,21 +12,27 @@
         <div class="container">
           <div class="row align-items-center py-lg-8 py-1">
             <div class="col-lg-6 text-center text-lg-start">
-
+                <h3 class="text text-light">Todo List</h3>
 
                 <div class="card">
                     <div class="card-header p-3">
-                      <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>Task List</h5>
+                      <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>Task</h5>
                     </div>
 
                     {{-- succsess alert --}}
                     @if (session('status'))
-                    <h6 class="alert alert-success">{{ session('status') }}</h6>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">{{ session('status') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
                     @endif
+
+
 
                 {{-- validation alert --}}
                 @if ( $errors->has('task') )
-                <span class="alert alert-danger">{{ $errors->first('task') }}</span>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">{{ $errors->first('task') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
                 @endif
 
                     {{-- form --}}
