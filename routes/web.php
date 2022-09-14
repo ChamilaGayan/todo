@@ -33,6 +33,19 @@ Route::prefix('/todo')->group(function(){
 Route::prefix('/blog')->group(function(){
     Route::get('/', [App\Http\Controllers\BlogController::class, 'blog'])->name('blog');
     Route::post('/store', [App\Http\Controllers\BlogController::class, 'store'])->name('blog.store');
-
-
 });
+
+Route::prefix('/item')->group(function(){
+    Route::get('/', [App\Http\Controllers\ItemController::class, 'index'])->name('item');;
+    Route::post('/store', [App\Http\Controllers\ItemController::class, 'store'])->name('item.store');
+});
+
+
+    Route::get('/itemview', [App\Http\Controllers\ItemController::class, 'viewitem'])->name('item.view');
+    Route::get('/edit{item_id}', [App\Http\Controllers\ItemController::class, 'edit'])->name('item.edit');
+
+    Route::prefix('/update')->group(function(){
+        Route::get('/{item_id}/delete', [App\Http\Controllers\ItemController::class, 'delete'])->name('item.delete');
+        Route::put('/{item_id}/update', [App\Http\Controllers\ItemController::class, 'update'])->name('item.update');
+    });
+

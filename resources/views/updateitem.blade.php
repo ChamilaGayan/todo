@@ -10,7 +10,7 @@
       <section>
         <div class="container">
           <div class="row align-items-center py-lg-8 py-1">
-            <div class="container"><h3 class="text-light">Add Blog Post</h3></div>
+            <div class="container"><h3 class="text-light">Add Item</h3></div>
             <div class="col-lg-6 text-center text-lg-start">
 
                 {{-- succsess alert --}}
@@ -20,56 +20,57 @@
                   </div>
                 @endif
 
-
 {{-- form --}}
-  <form class="row g-3 needs-validation" novalidate action="{{ route('blog.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route ('item.update', $item->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
-    <div class="col-md-6">
-      <label for="validationCustom01" class="form-label text text-light">Title</label>
-      <input type="text" class="form-control" name="title" placeholder="Title" id="validationCustom01" required>
-      <div class="invalid-feedback">
-        Please enter title.
-      </div>
-
-    </div>
-
-    <div class="col-md-6">
-      <label for="validationCustom05" class="form-label text text-light">Image</label>
-      <input type="file" class="form-control" name="image" id="validationCustom05" required>
-      <div class="invalid-feedback">
-        Please select image.
-      </div>
-    </div>
-
-    <div class="col-md-12">
-        <label for="validationCustom02" class="form-label text text-light">Description</label>
-        <input type="text" class="form-control" name="description" placeholder="Description" id="validationCustom02" required>
-        <div class="invalid-feedback">
-          Please enter description.
+    @method('PUT')
+    <div class="card mb-10">
+        <img src="{{asset('/storage/images/'.$item->image)}}" alt="." >
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Edit Product</h6>
         </div>
-      </div>
+        <div class="card-body">
 
-    <div class="col-12">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-        <label class="form-check-label" for="invalidCheck">
-          Agree to terms and conditions
-        </label>
-        <div class="invalid-feedback">
-          You must agree before submitting.
+                <div class="form-group row">
+                  <label for="staticEmail" class="col-sm-3 col-form-label">Name</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="staticEmail" name="name" value="{{ $item->name }}">
+                      </span>
+
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">Quantity</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="staticEmail" name="quantity" value="{{ $item->quantity }}">
+                      </span>
+
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">Price</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="staticEmail" name="price" value="{{ $item->price }}">
+                      </span>
+
+                    </div>
+                  </div>
+
+                  <button type="submit" name="update" class="btn btn-light"><i class="fas fa-check text-success me-3"></i>Update</button>
+                <a href="{{ route ('item.delete', $item->id) }}" data-mdb-toggle="tooltip" title="Remove" class="btn btn-light"><i class="fas fa-trash-alt text-danger" onClick="return confirm('Are you sure you want to delete the task ?')"></i> Delete</a>
         </div>
-      </div>
     </div>
-    <div class="col-12">
-      <button class="btn btn-primary" name="submit" type="submit">Add Post</button>
-    </div>
-  </form>
+</form>
+
 
             </div>
 
             <div class="col-lg-5">
                 <div class="col-lg-12"><img class="img-fluid" src="assets/img/img.png" alt="" /></div>
             </div>
+
           </div>
 
         </div><!-- end of .container-->
@@ -81,8 +82,6 @@
   <!-- ============================================-->
   @include('layouts.footer')
   <!-- ============================================-->
-
-
 
   <!-- ===============================================-->
   <!--    JavaScripts-->

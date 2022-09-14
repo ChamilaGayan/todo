@@ -10,7 +10,6 @@ class TodoController extends Controller
 
     public function index()
     {
-        // return view('home');
         $task = Task::get();
         return view('home', ['tasks'=> $task]);
     }
