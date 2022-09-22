@@ -49,3 +49,6 @@ Route::prefix('/item')->group(function(){
         Route::put('/{item_id}/update', [App\Http\Controllers\ItemController::class, 'update'])->name('item.update');
     });
 
+    Route::get('/contact', [App\Http\Controllers\ContactController::class, 'contact'])->name('contact');
+    Route::post('contact-us', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.us.store');
+
